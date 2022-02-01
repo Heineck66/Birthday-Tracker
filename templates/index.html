@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block createbd %}
+
+    <div>
+        <form action="/" method="POST">
+            <input autocomplete="off" name='birth' type='text'  placeholder="name">
+            <input autocomplete="off" name='birth' type='text'  placeholder="month">
+            <input autocomplete="off" name='birth' type='text'  placeholder="day">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block showbd %}
+
+    {% for birth in births %}
+    <tr>
+        <td name="bd{{ birth.id }}"> {{ birth.name }} </td>
+        <td name="bd{{ birth.id }}"> {{ birth.month}}/{{ birth.day }} </td>
+        <td> 
+            <div>
+                <form action="/edit" method="GET">
+                    <input name="id" type="hidden" value="{{ birth.id }}">
+                    <input name="name" type="hidden" value="{{ birth.name }}">
+                    <input type="submit" value="Edit">
+                </form>
+                <form action="/delete" method="POST">
+                    <input name="id" type="hidden" value="{{ birth.id }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+
+{% endblock %}

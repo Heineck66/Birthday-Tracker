@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block createbd %}
+
+    <div>
+        <p>Set the new values for: <b>{{ name }}</b></p>
+        <form action="/edit" method="POST">
+            <input type="hidden" name="id" value="{{ id }}">
+            <input autocomplete="off" name='birth' type='text'  placeholder="name" value="{{name}}">
+            <input autocomplete="off" name='birth' type='text'  placeholder="month">
+            <input autocomplete="off" name='birth' type='text'  placeholder="day">
+            <input type="submit" value="Save">
+        </form>
+        <p></p>
+        <form action="/">
+            <input type="submit" value="Back to Home">
+        </form>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block showbd %} 
+
+    {% for birth in births %}
+    <tr>
+        <td name="bd{{ birth.id }}"> <b>ID: {{ birth.id }}</b> - name: {{ birth.name }} </td>
+        <td name="bd{{ birth.id }}"> {{ birth.month}}/{{ birth.day }} </td>
+    </tr>
+    {% endfor %}
+
+{% endblock %}
